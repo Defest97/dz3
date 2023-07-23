@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ThemeService } from './theme.service';
+import { Task1Component } from './task1/task1.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'dz3';
+  currentTheme = '';
+
+  constructor(private theme: ThemeService) {
+  theme.getTheme().subscribe((theme: string) => {
+      this.currentTheme = theme;
+    });
+  }
+
 }
